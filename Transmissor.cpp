@@ -1,4 +1,4 @@
-//Eduarduino - Projeto Carro robô controlado via RF 433 Mhz
+//Projeto Carro robô controlado via RF 433 Mhz
 //Código do Transmissor - controle
  
 #include <VirtualWire.h>
