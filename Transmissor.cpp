@@ -1,3 +1,4 @@
+// @author Gabriel Alves Ramos
 //Projeto Carro robô controlado via RF 433 Mhz
 //Código do Transmissor - controle
  
@@ -12,17 +13,17 @@ int estadoB5;
 
 void setup()
 {
-    Serial.begin(9600);    // Debugging only
-    Serial.println("setup");
-    pinMode(13,OUTPUT);
-    // Initialise the IO and ISR
-    vw_set_tx_pin(7); 
-    vw_setup(2000);  // Bits per sec
-    pinMode(6,INPUT_PULLUP);
-    pinMode(3,INPUT_PULLUP);
-    pinMode(4,INPUT_PULLUP);
-    pinMode(5,INPUT_PULLUP);
-    pinMode(8,INPUT_PULLUP);
+   Serial.begin(9600);    // Debugging only
+   Serial.println("setup");
+   pinMode(13,OUTPUT);
+   // Initialise the IO and ISR
+   vw_set_tx_pin(7); 
+   vw_setup(2000);  // Bits por segundo
+   pinMode(6,INPUT_PULLUP);
+   pinMode(3,INPUT_PULLUP);
+   pinMode(4,INPUT_PULLUP);
+   pinMode(5,INPUT_PULLUP);
+   pinMode(8,INPUT_PULLUP);
 }
 
 void loop()

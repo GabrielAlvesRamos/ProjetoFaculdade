@@ -1,3 +1,5 @@
+// @author Gabriel Alves Ramos
+
 #include <VirtualWire.h>
 #include <AFMotor.h>
 
@@ -21,25 +23,22 @@ void setup() {
 
 Serial.begin(9600);
 
-    vw_set_rx_pin(11); // Define o pino 11 do Arduino como entrada de dados do receptor
-    vw_setup(2000);             // Bits por segundo
-    vw_rx_start();              // Inicializa o receptor
-
-
+     vw_set_rx_pin(11);          // Define o pino 11 do Arduino como entrada de dados do receptor
+     vw_setup(2000);             // Bits por segundo
+     vw_rx_start();              // Inicializa o receptor
   
-pinMode(13,OUTPUT);
-pinMode(12,OUTPUT);
-pinMode(10,OUTPUT);
-pinMode(2,OUTPUT);
-pinMode(3,OUTPUT);
-pinMode(4,OUTPUT);
-pinMode(6,OUTPUT);
-pinMode(7,OUTPUT);
-pinMode(8,OUTPUT);
+     pinMode(13,OUTPUT);
+     pinMode(12,OUTPUT);
+     pinMode(10,OUTPUT);
+     pinMode(2,OUTPUT);
+     pinMode(3,OUTPUT);
+     pinMode(4,OUTPUT);
+     pinMode(6,OUTPUT);
+     pinMode(7,OUTPUT);
+     pinMode(8,OUTPUT);
 
-
-     //motor
-     motor1.setSpeed(255); 
+     // Motores
+     motor1.setSpeed(255); // Define 255 como a velocidade maxima dos motores
      motor2.setSpeed(255); 
      motor3.setSpeed(255); 
      motor4.setSpeed(255);
@@ -47,24 +46,22 @@ pinMode(8,OUTPUT);
 
 
 void loop() {
-    motor1.run(RELEASE); 
-    motor2.run(RELEASE);
-    motor3.run(RELEASE);
-    motor4.run(RELEASE);
-
+     motor1.run(RELEASE); // Motores parados.
+     motor2.run(RELEASE);
+     motor3.run(RELEASE);
+     motor4.run(RELEASE);
 
      uint8_t message[VW_MAX_MESSAGE_LEN];    
      uint8_t msgLength = VW_MAX_MESSAGE_LEN; 
  
- 
-    if (vw_get_message(message, &msgLength)) // Non-blocking
-    {          
-        for (int i = 0; i < msgLength; i++)
-       {
-          recebido = message[i];
-       }
+     if (vw_get_message(message, &msgLength)) // Non-blocking
+     {          
+          for (int i = 0; i < msgLength; i++){
+               recebido = message[i];
+          }
+
           switch (recebido){
-               case 'F':{ // Gerencia o Frente
+               case 'F':{   // Gerencia o Frente
                     motor1.run(FORWARD); 
                     motor2.run(FORWARD);
                     motor3.run(FORWARD); 
@@ -72,12 +69,12 @@ void loop() {
                     delay(1000);
                     break;
                }
-               case 'B':{ // Gerencia o Tras
+               case 'B':{     // Gerencia o Tras
                     motor1.run(BACKWARD); 
                     motor2.run(BACKWARD); 
                     motor3.run(BACKWARD); 
                     motor4.run(BACKWARD);
-                    delay(2000);
+                    delay(1000);
                     break;
                }
                case 'T':{ // Genrencia o Tras e esquerda
@@ -112,7 +109,7 @@ void loop() {
                     delay(1000);
                     break;
                }
-               case 'V':{ // Motor arma
+               case 'V':{ // Motor arma da frente
                     digitalWrite(A1,HIGH);
                     delay(1000);
                     break;
